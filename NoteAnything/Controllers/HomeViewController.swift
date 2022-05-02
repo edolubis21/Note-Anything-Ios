@@ -7,13 +7,17 @@
 
 import UIKit
 import CoreData
+import CHTCollectionViewWaterfallLayout
 
 class HomeViewController: UIViewController {
     
     var notes : [Notes] = []
     
     lazy var collectionList: UICollectionView = {
-        let layout = UICollectionViewFlowLayout()
+        let layout = CHTCollectionViewWaterfallLayout()
+        layout.minimumColumnSpacing = 16
+        layout.minimumInteritemSpacing = 16
+        layout.sectionInset = .init(top: 8, left: 16, bottom: 8, right: 16)
         let uiCollectionView = UICollectionView(frame: view.bounds, collectionViewLayout: layout)
         uiCollectionView.register(NoteCollectionCell.self, forCellWithReuseIdentifier: NoteCollectionCell.identifier)
         uiCollectionView.backgroundColor = ColorApp.background
@@ -75,7 +79,7 @@ class HomeViewController: UIViewController {
 }
 
 
-extension HomeViewController:  UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+extension HomeViewController:  UICollectionViewDelegate, UICollectionViewDataSource, CHTCollectionViewDelegateWaterfallLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return notes.count
     }
@@ -86,23 +90,24 @@ extension HomeViewController:  UICollectionViewDelegate, UICollectionViewDataSou
         cell.note = note
         return cell
     }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return 16
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        return 8
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        return UIEdgeInsets.init(top: 8, left: 16, bottom: 8, right: 16)
-    }
-    
+
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let width = view.frame.width
-        return CGSize(width: (width / 2) - 24, height: (width / 2) - 24)
-    }
+        let width = (view.frame.width / 2) - 24
+        let note = notes[indexPath.row]
+        var date = ""
+        
+        if let dateDate = note.date {
+            let formatter = DateFormatter()
+            formatter.dateFormat = "dd MM yyyy"
+            date = formatter.string(from: dateDate)
+        }
+        
+        let titleHeight = NoteCollectionCell.getHeightLabel(note.title ?? "", UIFont.boldSystemFont(ofSize: 14), width - 32)
+        let dateHeight = NoteCollectionCell.getHeightLabel(date, UIFont.systemFont(ofSize: 12), width - 32)
+        let noteHeight = NoteCollectionCell.getHeightLabel(note.note ?? "", UIFont.systemFont(ofSize: 14), width - 32)
+        
+        return CGSize(width: width, height: titleHeight + dateHeight + noteHeight + 32 + 8)
+      }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let note = notes[indexPath.row]
@@ -119,14 +124,20 @@ class NoteCollectionCell : UICollectionViewCell {
         didSet {
             if let title = note.title {
                 labelTitle.text = title
+            } else {
+                labelTitle.text = ""
             }
             if let date = note.date {
                 let formatter = DateFormatter()
                 formatter.dateFormat = "dd MM yyyy"
                 labelDate.text = formatter.string(from: date)
+            } else {
+                labelDate.text = ""
             }
             if let note = note.note {
                 labelNote.text = note
+            } else {
+                labelNote.text = ""
             }
           
         }
@@ -194,5 +205,14 @@ class NoteCollectionCell : UICollectionViewCell {
         
     }
     
+    static func getHeightLabel(_ string: String,_ font: UIFont,_ width: CGFloat) -> CGFloat{
+        let label:UILabel = UILabel(frame: CGRect(x: 0, y: 0, width: width, height: CGFloat.greatestFiniteMagnitude))
+        label.numberOfLines = 0
+        label.lineBreakMode = .byWordWrapping
+        label.font = font
+        label.text = string
+        label.sizeToFit()
+        return label.frame.height
+    }
+    
 }
-

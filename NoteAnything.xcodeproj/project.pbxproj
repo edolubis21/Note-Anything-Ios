@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7CA1FC3E2F6E6CEFADEEF5D8 /* libPods-NoteAnything.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E3192FCC1B369FAFB4683670 /* libPods-NoteAnything.a */; };
 		804BA38C281D74D000753010 /* EditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 804BA38B281D74D000753010 /* EditViewController.swift */; };
 		80585E8E281BCF390002A03B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80585E8D281BCF390002A03B /* AppDelegate.swift */; };
 		80585E90281BCF390002A03B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80585E8F281BCF390002A03B /* SceneDelegate.swift */; };
@@ -20,6 +21,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		54145987D59FFB2CA5AF2D52 /* Pods-NoteAnything.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NoteAnything.release.xcconfig"; path = "Target Support Files/Pods-NoteAnything/Pods-NoteAnything.release.xcconfig"; sourceTree = "<group>"; };
 		804BA38B281D74D000753010 /* EditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditViewController.swift; sourceTree = "<group>"; };
 		80585E8A281BCF390002A03B /* NoteAnything.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NoteAnything.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		80585E8D281BCF390002A03B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -32,6 +34,8 @@
 		805D5DFF281EE52A0064EFC4 /* Notes+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Notes+CoreDataClass.swift"; sourceTree = "<group>"; };
 		805D5E00281EE52A0064EFC4 /* Notes+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Notes+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		80AFE5CE281E832A00CCAC23 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
+		93A378657DE8257EBABE6671 /* Pods-NoteAnything.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NoteAnything.debug.xcconfig"; path = "Target Support Files/Pods-NoteAnything/Pods-NoteAnything.debug.xcconfig"; sourceTree = "<group>"; };
+		E3192FCC1B369FAFB4683670 /* libPods-NoteAnything.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-NoteAnything.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -39,17 +43,30 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7CA1FC3E2F6E6CEFADEEF5D8 /* libPods-NoteAnything.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3B320D7FF2CFF09C55EC717C /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				93A378657DE8257EBABE6671 /* Pods-NoteAnything.debug.xcconfig */,
+				54145987D59FFB2CA5AF2D52 /* Pods-NoteAnything.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		80585E81281BCF390002A03B = {
 			isa = PBXGroup;
 			children = (
 				80585E8C281BCF390002A03B /* NoteAnything */,
 				80585E8B281BCF390002A03B /* Products */,
+				3B320D7FF2CFF09C55EC717C /* Pods */,
+				C21353C7C8643B3EE44F68AA /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -95,6 +112,14 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
+		C21353C7C8643B3EE44F68AA /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				E3192FCC1B369FAFB4683670 /* libPods-NoteAnything.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -102,6 +127,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 80585EA1281BCF3B0002A03B /* Build configuration list for PBXNativeTarget "NoteAnything" */;
 			buildPhases = (
+				0A56E06E8A29AD730E5346FC /* [CP] Check Pods Manifest.lock */,
 				80585E86281BCF390002A03B /* Sources */,
 				80585E87281BCF390002A03B /* Frameworks */,
 				80585E88281BCF390002A03B /* Resources */,
@@ -159,6 +185,31 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		0A56E06E8A29AD730E5346FC /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-NoteAnything-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		80585E86281BCF390002A03B /* Sources */ = {
@@ -306,6 +357,7 @@
 		};
 		80585EA2281BCF3B0002A03B /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 93A378657DE8257EBABE6671 /* Pods-NoteAnything.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -332,6 +384,7 @@
 		};
 		80585EA3281BCF3B0002A03B /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 54145987D59FFB2CA5AF2D52 /* Pods-NoteAnything.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
